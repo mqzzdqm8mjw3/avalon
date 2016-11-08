@@ -87,7 +87,7 @@ class Game(object):
     def _addMorgana(self):
         p = self._players[self._nOptEvil+1]
         self._assignments[p] = 'Morgana'
-        self._character['Morgana'] = Characters("Morgana", p, "Evil",
+        self._characters['Morgana'] = Character("Morgana", p, "Evil",
             "You appear to Percival as Merlin.")
         self._knownToPercival.append(p)
 
