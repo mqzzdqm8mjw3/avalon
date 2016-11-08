@@ -82,6 +82,9 @@ class Game(object):
             "You are not revealed to other Evil players, nor do you know which players are Evil at the start of the game.")
         self._knownToMerlin.remove(p)
         self._knownToEvil.remove(p)
+        self._knownToMerlin.append('Oberon (identity unknown)')
+        self._knownToEvil.append('Oberon (identity unknown)')
+        self._nOptEvil += 1
         return
 
     def _addMorgana(self):
@@ -90,6 +93,7 @@ class Game(object):
         self._characters['Morgana'] = Character("Morgana", p, "Evil",
             "You appear to Percival as Merlin.")
         self._knownToPercival.append(p)
+        self._nOptEvil += 1
 
     def _addLoyalServant(self, p):
         self._assignments[p] = 'a Loyal Servant of Arthur'
@@ -129,7 +133,7 @@ class Game(object):
             print("\tYou know the following players are Evil: " + \
                   ', '.join(self._knownToMerlin))
         elif character in ['the Assassin', 'a Minion of Mordred', \
-                         'Mordred', 'Oberon', 'Morgana']:
+                         'Mordred', 'Morgana']:
             print("\tYou know the following players are Evil: " + \
                   ', '.join(self._knownToEvil))
         elif character == 'Percival':
