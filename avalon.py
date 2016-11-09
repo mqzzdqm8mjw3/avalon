@@ -172,10 +172,10 @@ def main():
     
     print("Players: " + ', '.join(PLAYERS))
     
-    query = input("Enter your name: ").strip()
+    query = input("Enter your name:").strip().lower()
 
     # set-up game    
-    g = Game(PLAYERS, seed=SEED)
+    g = Game([p.lower() for p in PLAYERS], seed=SEED)
     for ch in ADDCHAR:
         g.addCharacter(ch)
     g.assignRemainingCharacters()
