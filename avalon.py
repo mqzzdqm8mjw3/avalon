@@ -6,7 +6,7 @@ import random
 
 __author__ = 'mqzzdqm8mjw3'
 
-NEVIL = { 5 : 2, 6 : 2, 7 : 3, 8 : 3, 9 : 3, 10 : 3 }
+NEVIL = { 5 : 2, 6 : 2, 7 : 3, 8 : 3, 9 : 3, 10 : 4 }
 
 
 class Character(object):
