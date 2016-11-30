@@ -80,9 +80,9 @@ class Game(object):
         self._assignments[p] = 'Oberon'
         self._characters['Oberon'] = Character("Oberon", p, "Evil",
             "You are not revealed to other Evil players, nor do you know which players are Evil at the start of the game.")
-        self._knownToMerlin.remove(p)
+        #self._knownToMerlin.remove(p)
         self._knownToEvil.remove(p)
-        self._knownToMerlin.append('Oberon (identity unknown)')
+        #self._knownToMerlin.append('Oberon (identity unknown)')
         self._knownToEvil.append('Oberon (identity unknown)')
         self._nOptEvil += 1
         return
