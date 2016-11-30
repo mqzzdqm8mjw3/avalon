@@ -46,7 +46,7 @@ class Game(object):
             return
         elif (character in ['Mordred', 'Oberon', 'Morgana']) and \
              (character not in self._characters) and \
-             (self._nOptEvil < self._nEvil):
+             (self._nOptEvil < self._nEvil-1):
             if character == 'Mordred':
                 self._addMordred()
             elif character == 'Oberon':
