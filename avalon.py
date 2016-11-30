@@ -28,8 +28,8 @@ class Game(object):
         self._knownToEvil   = self._players[:self._nEvil]
         self._nOptEvil      = 0
 
-        self._assignments = {self._players[-1] : "Merlin", 
-                             self._players[0] : "the Assassin"}
+        self._assignments = {self._players[-1].lower() : "Merlin", 
+                             self._players[0].lower() : "the Assassin"}
         self._characters  = {'Merlin' : Character("Merlin",
             self._players[-1], "Good",
             "You know the agents of Evil, but you must speak of this only in riddle. If your true identity is discovered, all will be lost."),
@@ -60,14 +60,14 @@ class Game(object):
 
     def _addPercival(self):
         p = self._players[self._nEvil]
-        self._assignments[p] = 'Percival'
+        self._assignments[p.lower()] = 'Percival'
         self._characters['Percival'] = Character("Percival", p, "Good",
             "Your special power is knowledge of Merlin at the start of the game. You must use your knowledge wisely to protect Merlin's identity.")
         return
 
     def _addMordred(self):
         p = self._players[self._nOptEvil+1]
-        self._assignments[p] = 'Mordred'
+        self._assignments[p.lower()] = 'Mordred'
         self._characters['Mordred'] = Character("Mordred", p, "Evil",
             "Your special power is that your identity is not revealed to Merlin at the start of the game.")
         self._knownToMerlin.remove(p)
@@ -77,7 +77,7 @@ class Game(object):
 
     def _addOberon(self):
         p = self._players[self._nOptEvil+1]
-        self._assignments[p] = 'Oberon'
+        self._assignments[p.lower()] = 'Oberon'
         self._characters['Oberon'] = Character("Oberon", p, "Evil",
             "You are not revealed to other Evil players, nor do you know which players are Evil at the start of the game.")
         #self._knownToMerlin.remove(p)
@@ -89,14 +89,14 @@ class Game(object):
 
     def _addMorgana(self):
         p = self._players[self._nOptEvil+1]
-        self._assignments[p] = 'Morgana'
+        self._assignments[p.lower()] = 'Morgana'
         self._characters['Morgana'] = Character("Morgana", p, "Evil",
             "You appear to Percival as Merlin.")
         self._knownToPercival.append(p)
         self._nOptEvil += 1
 
     def _addLoyalServant(self, p):
-        self._assignments[p] = 'a Loyal Servant of Arthur'
+        self._assignments[p.lower()] = 'a Loyal Servant of Arthur'
         if 'a Loyal Servant of Arthur' in self._characters:
             self._characters['a Loyal Servant of Arthur']._player.append(p)
         else:
@@ -105,7 +105,7 @@ class Game(object):
         return
 
     def _addMinion(self, p):
-        self._assignments[p] = 'a Minion of Mordred'
+        self._assignments[p.lower()] = 'a Minion of Mordred'
         if 'a Minion of Mordred' in self._characters:
             self._characters['a Minion of Mordred']._player.append(p)
         else:
@@ -120,7 +120,7 @@ class Game(object):
             self._addLoyalServant(p)
 
     def getAssignment(self, player):
-        return self._assignments[player]
+        return self._assignments[player.lower()]
 
     def printInfo(self, assignment):
         side       = self._characters[assignment]._side
@@ -172,10 +172,10 @@ def main():
     
     print("Players: " + ', '.join(PLAYERS))
     
-    query = input("Enter your name:").strip().lower()
+    query = input("Enter your name:").strip()
 
     # set-up game    
-    g = Game([p.lower() for p in PLAYERS], seed=SEED)
+    g = Game(PLAYERS, seed=SEED)
     for ch in ADDCHAR:
         g.addCharacter(ch)
     g.assignRemainingCharacters()
