@@ -56,7 +56,7 @@ class Game(object):
             return
         else:
             print("Error adding character. %s not added." % character)
-            return
+            return 1
 
     def _addPercival(self):
         p = self._players[self._nEvil]
@@ -170,15 +170,18 @@ def main():
     #
     ###
     
-    print("Players: " + ', '.join(PLAYERS))
     
-    query = input("Enter your name:").strip()
-
     # set-up game    
     g = Game(PLAYERS, seed=SEED)
     for ch in ADDCHAR:
-        g.addCharacter(ch)
+        if g.addCharacter(ch):
+          print("Please try setting up the game again.")
+          return
     g.assignRemainingCharacters()
+    
+    # query
+    print("Players: " + ', '.join(PLAYERS))
+    query = input("Enter your name:").strip()
 
     # print player info
     assignment = g.getAssignment(query)
